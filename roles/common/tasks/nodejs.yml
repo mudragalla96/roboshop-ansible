@@ -1,0 +1,28 @@
+#NodeJS() {
+
+#echo "Setup NodeJS Repo File"
+#curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${LOG_FILE}
+#StatusCheck $?
+#
+#echo "Installing NodeJS Server"
+#yum install nodejs -y &>>${LOG_FILE}
+#StatusCheck $?
+#
+#APP_PREREQ
+#
+#echo "Install NodeJS Dependencies"
+#npm install &>>${LOG_FILE}
+#StatusCheck $?
+#
+#SYSTEMD_SETUP
+
+- name: NodeJS Setup
+  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+- name: Setup NodeJS repos
+  ansible.builtin.yum:
+    name: nodejs
+    state: installed
+
+- name: Import APP_PreReq Task File
+  ansible.builtin.import_tasks: app_prereq.yml
