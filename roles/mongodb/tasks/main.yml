@@ -10,9 +10,9 @@
 #mongo < users.js &>>$LOG_FILE
 #StatusCheck $?
 
-- name: Copy of Mongodb Repo
+- name: Setup of Mongodb Repo
   ansible.builtin.copy:
-    src: mongo.repo
+    src: mongodb.repo
     dest: /etc/yum.repos.d/yum.repo
 
 - name: Install MongoDB Package
