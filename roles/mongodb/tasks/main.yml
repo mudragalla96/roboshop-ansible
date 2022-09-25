@@ -32,8 +32,8 @@
     state: restarted
     enabled: yes
 
-- name: Download MongoDB Schema Files
-  ansible.builtin.archive:
+- name: Downloading Schema Files
+  ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
-    dest: /tmp/
+    dest: /tmp
     remote_src: yes
