@@ -40,10 +40,10 @@
 
 - name: Load Catalogue Schema
   community.mongodb.mongodb_shell:
-    file: "/path/to/mongodb-main/catalogue.js"
+    file: "/tmp/mongodb-main/catalogue.js"
     idempotent: yes
 
 - name: Load Users Schema
   community.mongodb.mongodb_shell:
-    file: "/path/to/mongodb-main/users.js"
+    file: "/tmp/mongodb-main/users.js"
     idempotent: yes
