@@ -1,10 +1,4 @@
 
-#systemctl daemon-reload &>>${LOG_FILE}
-#systemctl enable ${COMPONENT} &>>${LOG_FILE}
-#
-#echo "Start ${COMPONENT} Service"
-#systemctl start ${COMPONENT} &>>${LOG_FILE}
-#StatusCheck $?
 
 - name: Copy SystemD Service File
   ansible.builtin.copy:
