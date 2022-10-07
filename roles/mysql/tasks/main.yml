@@ -1,7 +1,4 @@
 
-
-#echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}');
-#FLUSH PRIVILEGES;" >/tmp/root-pass.sql
 #echo "show databases;" |mysql -uroot -p${ROBOSHOP_MYSQL_PASSWORD} &>>$LOG_FILE
 #if [ $? -ne 0 ]; then
 #echo "Change the default root password"
@@ -68,7 +65,19 @@
     login_user: root
     login_password: "{{ ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
+  ignore_errors: yes
+  register: mysql_conn_status
+
+- name: Copy SQL file to reset password
+  ansible.builtin.template:
+    src: reset-root-pass.sql
+    dest: /tmp/reset-root-pass.sql
+    when: mysql_conn_status is failed
 
 - name: print
   debug:
     msg: "{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ') | split(' ') | last }}"
+
+- name: Change the root password
+  ansible.builtin.shell: mysql --connect-expired-password -uroot -p"{{ out['content'] | b64decode | regex_findall('temporary password.*') |join(' ') | split(' ') | last }}" </tmp/reset-root-pass.sql
+  when: mysql_conn_status is failed
