@@ -6,10 +6,10 @@
       - python36-devel
     state: installed
 
-- name: Import APP_PreReq Task File
+- name: Import App_PreReq Task File
   ansible.builtin.import_tasks: app_prereq.yml
 
-- name: Install PIP requiremnts file
+- name: Install PIP requirements file
   ansible.builtin.pip:
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3
