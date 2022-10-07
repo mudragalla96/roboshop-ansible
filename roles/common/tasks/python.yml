@@ -1,7 +1,9 @@
 - name: Install Python
   ansible.builtin.yum:
     name:
-      -
+      - python36
+      - gcc
+      - python36-devel
     state: installed
 
 - name: Import APP_PreReq Task File
