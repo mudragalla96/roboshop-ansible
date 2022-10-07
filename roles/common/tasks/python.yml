@@ -1,0 +1,16 @@
+- name: Install Python
+  ansible.builtin.yum:
+    name:
+      -
+    state: installed
+
+- name: Import APP_PreReq Task File
+  ansible.builtin.import_tasks: app_prereq.yml
+
+- name: Install PIP requiremnts file
+  ansible.builtin.pip:
+    requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
+    executable: pip3
+
+- name: Import SystemD tasks
+  ansible.builtin.import_tasks: systemd.yml
