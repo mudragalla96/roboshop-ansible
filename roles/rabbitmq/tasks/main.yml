@@ -1,20 +1,4 @@
 
-
-#sudo rabbitmqctl list_users | grep roboshop &>>$LOG_FILE
-#if [ $? -ne 0 ]; then
-#echo "Add Application User RabbitMQ"
-#rabbitmqctl add_user roboshop roboshop123 &>>$LOG_FILE
-#StatusCheck $?
-#fi
-#echo "Add Application User Tags in RabbitMQ "
-#rabbitmqctl set_user_tags roboshop administrator &>>$LOG_FILE
-#StatusCheck $?
-#
-#echo "Add Permissions for App user in RabbitMQ"
-#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOG_FILE
-#StatusCheck $?
-
-
 - name: Setup RabbitMQ repos
   ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
@@ -32,3 +16,14 @@
     name: rabbitmq-server
     state: started
     enabled: yes
+
+- name: Add application user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: "{{ROBOSHOP_RABBITMQ_PASSWORD}}"
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator
