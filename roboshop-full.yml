@@ -1,0 +1,49 @@
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - frontend
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - mongodb
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+     - catalogue
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - redis
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+     - user
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - cart
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - mysql
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - shipping
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - rabbitmq
+
+- name: Frontend setup
+  hosts: FRONTEND
+  roles:
+    - payment
