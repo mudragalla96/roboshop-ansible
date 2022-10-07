@@ -1,7 +1,3 @@
-#if [ -z "${ROBOSHOP_MYSQL_PASSWORD}" ]; then
-#echo "\e[31m ROBOSHOP_MYSQL_PASSWORD env variable is needed\e[0m"
-#exit 1
-#fi
 
 
 #echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('${ROBOSHOP_MYSQL_PASSWORD}');
@@ -45,11 +41,11 @@
   ansible.builtin.dnf:
     name: "{{item}}"
     state: installed
-    loop:
-      - mysql-community-devel
-      - mysql-community-server
-      - gcc
-      - python36-devel
+  loop:
+    - mysql-community-devel
+    - mysql-community-server
+    - gcc
+    - python36-devel
 
 - name: Start MySQL Service
     ansible.builtin.systemd:
