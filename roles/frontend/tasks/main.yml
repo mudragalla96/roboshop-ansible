@@ -8,7 +8,6 @@
     path: /usr/share/nginx/html
     state: absent
 
-
 - name: Downloading Nginx Web Content & Extract it
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
