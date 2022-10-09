@@ -5,11 +5,11 @@ Description=Payment Service
 User=root
 WorkingDirectory=/home/roboshop/payment
 
-Environment=CART_HOST=cart.vykunta.internal
-Environment=USER_HOST=user.vykunta.internal
-Environment=AMQP_HOST=rabbitmq.vykunta.internal
+Environment=CART_HOST=cart-{{ENV}}.vykunta.internal
+Environment=USER_HOST=user-{{ENV}}.vykunta.internal
+Environment=AMQP_HOST=rabbitmq-{{ENV}}.vykunta.internal
 Environment=AMQP_USER=roboshop
-Environment=AMQP_PASS=roboshop123
+Environment=AMQP_PASS={{ROBOSHOP_RABBITMQ_PASSWORD}}
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
