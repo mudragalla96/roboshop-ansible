@@ -1,49 +1,59 @@
 - name: Frontend setup
   hosts: FRONTEND
+  become: true
   roles:
     - frontend
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: MongoDB setup
+  hosts: MONGODB
+  become: true
   roles:
     - mongodb
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: Catalogue setup
+  hosts: CATALOGUE
+  become: true
   roles:
      - catalogue
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: Redis setup
+  hosts: REDIS
+  become: true
   roles:
     - redis
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: User setup
+  hosts: USER
+  become: true
   roles:
      - user
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: Cart setup
+  hosts: CART
+  become: true
   roles:
     - cart
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: MySQL setup
+  hosts: MYSQL
+  become: true
   roles:
     - mysql
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: Shipping setup
+  hosts: SHIPPING
+  become: true
   roles:
     - shipping
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: RabbitMQ setup
+  hosts: RABBITMQ
+  become: true
   roles:
     - rabbitmq
 
-- name: Frontend setup
-  hosts: FRONTEND
+- name: Payment setup
+  hosts: PAYMENT
+  become: true
   roles:
     - payment
