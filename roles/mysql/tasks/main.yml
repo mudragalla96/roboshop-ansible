@@ -36,7 +36,7 @@
 - name: Check MySQL Credentials
   community.mysql.mysql_info:
     login_user: root
-    login_password: "{{ ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
     filter: version
   ignore_errors: yes
   register: mysql_conn_status
@@ -55,7 +55,7 @@
   community.mysql.mysql_query:
     query: 'show plugins'
     login_user: root
-    login_password: "{{ ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
   ignore_errors: yes
   register: plugins_status
 
@@ -64,7 +64,7 @@
   community.mysql.mysql_query:
     query: 'uninstall plugin validate_password;'
     login_user: root
-    login_password: "{{ ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"
   when: plugins_status | regex_findall('validate_password') | length > 0
 
 - name: Downloading Schema Files
@@ -79,4 +79,4 @@
     name: all
     target: /tmp/mysql-main/shipping.sql
     login_user: root
-    login_password: "{{ ROBOSHOP_MYSQL_PASSWORD}}"
+    login_password: "{{ROBOSHOP_MYSQL_PASSWORD}}"

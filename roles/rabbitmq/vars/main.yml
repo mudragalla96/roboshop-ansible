@@ -1,4 +1,2 @@
 COMPONENT: rabbitmq
 SECRETS: "{{ lookup('amazon.aws.aws_secret', 'roboshop/all-secrets', region='us-east-1') }}"
-ROBOSHOP_RABBITMQ_PASSWORD: "{{SECRETS.ROBOSHOP_RABBITMQ_PASSWORD}}"
-ROBOSHOP_RABBITMQ_USER: "{{SECRETS.ROBOSHOP_RABBITMQ_USER}}"
