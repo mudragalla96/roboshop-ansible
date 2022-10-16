@@ -18,5 +18,5 @@ scrape_configs:
       - targets: ["localhost:9090"]
   - jobs_name: "test-nodes"
     static_configs:
-      - targets: ["172.31.23.177:9100"]
+      - targets: ["172.31.15.181:9100"]
 
